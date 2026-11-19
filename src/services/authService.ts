@@ -52,6 +52,13 @@ export class AuthService {
             throw new UnauthorizedError('Invalid email or password');
         }
 
+        if (!user.isVerified) {
+            logger.warn('Login attempt for unverified account', { email });
+            throw new UnauthorizedError(
+                'Please verify your email address before logging in. Check your inbox for the verification link.'
+            );
+        }
+
         // 2. Check if user is active
         if (!user.isActive) {
             logger.warn('Login attempt for inactive account', { email });

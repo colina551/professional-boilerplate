@@ -22,4 +22,4 @@ Signature: Cryptographic hash of the encoded header, encoded payload, and server
 
 9.How Auth Middleware Identifies the User: It extracts the token from the Authorization: Bearer <token> header, verifies its signature and expiration with jwt.verify() using JWT_SECRET, and attaches the decoded payload (userId, email, etc.) to req.user for downstream handlers.
 
-10.Role-Based Authorization Changes: Add a role column (defaulting to 'user') to the User entity, include role in the JWT payload when signing tokens, extend Express.Request.user to include role, add a role-checking middleware (e.g., adminOnly returning 403 ForbiddenError if not 'admin'), and apply it after authMiddleware on restricted routes.
+10. Role-Based Authorization Changes: Add a role column (defaulting to 'user') to the User entity, include role in the JWT payload when signing tokens, extend Express.Request.user to include role, add a role-checking middleware (e.g., adminOnly returning 403 ForbiddenError if not 'admin'), and apply it after authMiddleware on restricted routes.
